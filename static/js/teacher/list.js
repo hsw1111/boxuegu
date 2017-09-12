@@ -1,7 +1,7 @@
-define(["jquery","template","bootstrap"],function($,template){
+﻿define(["jquery","template","bootstrap"],function($,template){
   $(function(){
 
-    //��ȡ��ʦ�б�
+    //获取讲师列表
     $.ajax({
       url:"/api/teacher",
       success:function(data){
@@ -12,7 +12,7 @@ define(["jquery","template","bootstrap"],function($,template){
       }
     })
 
-    //�����ʾģ̬��
+    //点击查看显示模态框
     $("#teacher_list_tbody").on("click",".search-btn",function(){
 
       var id = $(this).parent().data("id");
@@ -23,7 +23,38 @@ define(["jquery","template","bootstrap"],function($,template){
         },
         success:function(data){
           console.log(data);
-          $("#teacherModal").html(template("modal_tpl",data.result)).modal("show");
+          if(data.code==200){
+
+            $("#teacherModal").html(template("modal_tpl",data.result)).modal("show");
+          }
+        }
+      });
+    })
+
+    //点击注销或启用
+    $("#teacher_list_tbody").on("click",".change-btn",function(){
+
+      var id = $(this).parent().data("id");
+      var status = $(this).data("status");
+      var that = $(this);
+      $.ajax({
+        url:"/api/teacher/handle",
+        type:"post",
+        data:{
+          tc_id:id,
+          tc_status:status
+        },
+        success:function(data){
+          console.log(data);
+          if(data.code==200){
+            if(data.result.tc_status == 1){
+              that.addClass("btn-success").removeClass("btn-warning").text("启 用");
+            }else{
+              that.addClass("btn-warning").removeClass("btn-success").text("注 销");
+            }
+            that.data("status",data.result.tc_status);
+          }
+
         }
       });
     })
