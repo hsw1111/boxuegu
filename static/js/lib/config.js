@@ -4,7 +4,8 @@ require.config({
     jquery: "./jquery/jquery",
     cookie: "./jquery-cookie/jquery.cookie",
     template: "./artTemplate/template",
-    bootstrap:"./bootstrap/js/bootstrap"
+    bootstrap:"./bootstrap/js/bootstrap",
+    ultils:"../static/js/lib/ultils"
   },
   shim:{
     bootstrap:{
