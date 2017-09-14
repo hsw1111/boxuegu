@@ -1,7 +1,8 @@
-define(["jquery", "template", "cookie"], function($, template){
+define(["jquery", "template","nprogress", "cookie"], function($, template,Nprogress){
+	Nprogress.start();
 	$(function(){
-
-		//ÅĞ¶ÏÊÇ·ñµÇÂ¼
+		Nprogress.done();
+		//åˆ¤æ–­æ˜¯å¦ç™»å½•
 		if(location.pathname != "/dashboard/login"){
 			if(!$.cookie("PHPSESSID")){
 				location.href = "/dashboard/login";
@@ -11,11 +12,11 @@ define(["jquery", "template", "cookie"], function($, template){
 		};
 
 
-		//µ¼º½ÏÔÊ¾
+		//ç‚¹å‡»æ˜¾ç¤ºå¯¼èˆªåˆ†ç±»
 		$("ul>li>ul").parent().click(function(){
 			$(this).children("ul").stop().slideToggle();
 		});
-		//µ¼º½¸ßÁÁ
+		//ç‚¹å‡»é«˜äº®
 		$(".list-unstyled a").each(function(i,e){
 			if($(e).attr("href")==location.pathname){
 				$(e).addClass("active");
@@ -23,7 +24,7 @@ define(["jquery", "template", "cookie"], function($, template){
 		})
 
 
-		//ÍË³öµÇÂ¼
+		//é€€å‡ºç™»å½•
 		$("#logout-btn").click(function(){
 			$.ajax({
 				url:"/api/logout",
@@ -38,7 +39,14 @@ define(["jquery", "template", "cookie"], function($, template){
 			})
 		})
 
+		//è¿›åº¦æ¡
+		$(document).ajaxStart(function(){
+			Nprogress.start();
+		});
 
+		$(document).ajaxStop(function(){
+			Nprogress.done();
+		});
 
 	})
 })

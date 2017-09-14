@@ -37,8 +37,9 @@
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">昵称</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" data-required data-trim required data-description="name" data-describedby="msgfornicheng" class="form-control input-sm">
                             </div>
+                            <span id="msgfornicheng" class="col-xs-3 help-block">姓名</span>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">性别</label>
@@ -54,8 +55,9 @@
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">出生日期</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" id="tc_birthday" data-required data-description="birthday" data-describedby="msgforbirthday"  class="form-control input-sm">
                             </div>
+                            <span id="msgforbirthday" class="col-xs-3 help-block">出生日期</span>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">籍贯</label>
@@ -80,25 +82,28 @@
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">手机号码</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" data-required data-pattern="^\d{11}$" data-description="phone" data-describedby="msgforphone" class="form-control input-sm">
                             </div>
+                            <span id="msgforphone" class="col-xs-3 help-block">手机号码</span>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">电子邮箱</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" data-required data-pattern="^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$" data-description="email" data-describedby="msgforemail" class="form-control input-sm">
                             </div>
+                            <span id="msgforemail" class="col-xs-3 help-block">邮箱</span>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">入职日期</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" id="tc_join_date" data-required data-description="date" data-describedby="msgfordate" class="form-control input-sm">
                             </div>
+                            <span id="msgfordate" class="col-xs-3 help-block">入职日期</span>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">个人介绍</label>
                             <div class="col-xs-5 ckeditor">
-                                <textarea name="" rows="15" class="form-control input-sm"></textarea>
+                                <textarea name="tc_textarea" rows="15" class="form-control input-sm"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -114,7 +119,8 @@
     </div>
 
     <?php include "/views/public/js.html" ?>
-    <script src="/views/assets/nprogress/nprogress.js"></script>
-    <script src="/views/static/js/common.js"></script>
+    <script>
+        require(["../static/js/dashboard/settings"]);
+    </script>
 </body>
 </html>

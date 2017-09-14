@@ -17,7 +17,7 @@ define(["jquery","template","ultils"],function($,template,ultils){
         }
       })
 
-      $("#teacher_add_btn").click(function(){
+      $("#teacher_info").on("click","#teacher_add_btn",function(){
         $.ajax({
           url:"/api/teacher/update",
           type:"post",
@@ -31,6 +31,7 @@ define(["jquery","template","ultils"],function($,template,ultils){
           }
 
         })
+        return false;
       })
     }else{
       //添加讲师
@@ -43,6 +44,7 @@ define(["jquery","template","ultils"],function($,template,ultils){
 
 
       $("#teacher_add_btn").click(function(){
+
         $.ajax({
           url:"/api/teacher/add",
           type:"post",
@@ -55,7 +57,8 @@ define(["jquery","template","ultils"],function($,template,ultils){
             }
           }
 
-        })
+        });
+        return false;
       })
 
     }
